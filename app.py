@@ -36,9 +36,12 @@ def update_invoice(invoice_id):
     data = request.json
     collection.update_one({"_id": ObjectId(invoice_id)}, {"$set": data})
     return jsonify({"message": "Invoice updated"}), 200
+
 @app.route("/invoices/<invoice_id>", methods=["DELETE"])
 def delete_invoice(invoice_id):
     collection.delete_one({"_id": ObjectId(invoice_id)})
     return jsonify({"message": "Invoice deleted"}), 200
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+
+#  Ensure Gunicorn can find the Flask app
+if __name__ != "__main__":
+    gunicorn_app = app

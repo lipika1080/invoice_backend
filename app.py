@@ -5,6 +5,7 @@ from bson import ObjectId
 
 app = Flask(__name__)
 CORS(app)
+app.app_context().push()
 
 @app.route("/invoices", methods=["POST"])
 def add_invoice():
@@ -44,4 +45,4 @@ def delete_invoice(invoice_id):
 
 #  Ensure Gunicorn can find the Flask app
 if __name__ != "__main__":
-    gunicorn_app = app
+    app.run(host="0.0.0.0", port=8000)

@@ -44,5 +44,5 @@ def delete_invoice(invoice_id):
     return jsonify({"message": "Invoice deleted"}), 200
 
 #  Ensure Gunicorn can find the Flask app
-if __name__ != "__main__":
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
